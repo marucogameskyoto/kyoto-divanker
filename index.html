@@ -187,6 +187,23 @@
       filter: drop-shadow(0 0 22px rgba(170, 0, 0, 0.72));
     }
 
+    .final-copy {
+      display: none;
+      margin: 8px 0 18px;
+      color: #ff1a1a;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(16px, 4.5vw, 28px);
+      font-weight: 800;
+      line-height: 1.35;
+      text-shadow:
+        0 0 8px rgba(255, 0, 0, 0.85),
+        0 0 18px rgba(70, 0, 0, 0.95);
+    }
+
+    .final-copy.show {
+      display: block;
+    }
+
     .hint,
     .message p {
       margin: 0 0 16px;
@@ -377,7 +394,7 @@
     <section id="stage" class="stage" aria-label="違和感を探すミニゲーム">
       <canvas id="scene" width="572" height="1024"></canvas>
       <div class="hud">
-        <span id="stageLabel">Stage 1 / 3</span>
+        <span id="stageLabel">Stage 1 / 10</span>
         <span id="spotLabel">違和感 0 / 3</span>
       </div>
       <div id="timeLabel" class="time">残り 0:20</div>
@@ -396,6 +413,7 @@
       <div id="message" class="overlay message" aria-live="polite">
         <div class="panel">
           <img class="logo-image" src="assets/kyoto-divanker-logo.svg" alt="京都ディバンカー" />
+          <p id="finalCopy" class="final-copy">すべてのクソ広告よ滅べ・・・</p>
           <div class="actions">
             <button id="nextButton" type="button" aria-label="次のステージ"><img class="button-image" src="assets/button-next.svg" alt="" /></button>
             <button id="restartButton" class="secondary" type="button" aria-label="最初に戻る"><img class="button-image" src="assets/button-restart.svg" alt="" /></button>
@@ -419,25 +437,26 @@
     const nextButton = document.getElementById("nextButton");
     const restartButton = document.getElementById("restartButton");
     const twitterLink = document.getElementById("twitterLink");
+    const finalCopy = document.getElementById("finalCopy");
 
     const TIME_LIMIT = 20;
     const stages = [
       {
-        title: "雲海の登山道",
-        image: "assets/stage01-mountain-anomaly.png",
+        title: "夜の寝室",
+        image: "assets/stage01-anomaly.png",
         spots: [
-          { type: "moonFace", x: 398, y: 112, w: 118, h: 126, found: false },
-          { type: "groundHand", x: 312, y: 815, w: 190, h: 165, found: false },
-          { type: "starEyes", x: 45, y: 92, w: 260, h: 110, found: false }
+          { type: "tabletHorror", x: 70, y: 505, w: 220, h: 190, found: false },
+          { type: "windowMan", x: 0, y: 65, w: 170, h: 220, found: false },
+          { type: "pillowWoman", x: 420, y: 335, w: 152, h: 150, found: false }
         ]
       },
       {
-        title: "夕暮れの神社",
-        image: "assets/stage02-shrine-anomaly.png",
+        title: "屋内プール",
+        image: "assets/stage02-anomaly.png",
         spots: [
-          { type: "oldMan", x: 488, y: 350, w: 84, h: 170, found: false },
-          { type: "lanternFace", x: 0, y: 443, w: 88, h: 112, found: false },
-          { type: "toriiFace", x: 282, y: 130, w: 132, h: 116, found: false }
+          { type: "angryWoman", x: 315, y: 245, w: 150, h: 150, found: false },
+          { type: "underwaterHand", x: 150, y: 705, w: 185, h: 235, found: false },
+          { type: "bloodWall", x: 0, y: 220, w: 130, h: 180, found: false }
         ]
       },
       {
@@ -447,6 +466,69 @@
           { type: "waterFace", x: 410, y: 80, w: 150, h: 158, found: false },
           { type: "floorHand", x: 12, y: 750, w: 180, h: 150, found: false },
           { type: "cupYokai", x: 0, y: 380, w: 135, h: 135, found: false }
+        ]
+      },
+      {
+        title: "夕食の部屋",
+        image: "assets/stage04-anomaly.png",
+        spots: [
+          { type: "windowMan", x: 0, y: 135, w: 145, h: 220, found: false },
+          { type: "skeletonFood", x: 85, y: 650, w: 205, h: 135, found: false },
+          { type: "photoGhost", x: 0, y: 405, w: 135, h: 130, found: false }
+        ]
+      },
+      {
+        title: "川遊び",
+        image: "assets/stage05-anomaly.png",
+        spots: [
+          { type: "childMan", x: 0, y: 410, w: 150, h: 190, found: false },
+          { type: "waterFace", x: 150, y: 565, w: 210, h: 170, found: false },
+          { type: "whiteYokai", x: 255, y: 75, w: 135, h: 205, found: false }
+        ]
+      },
+      {
+        title: "寝室",
+        image: "assets/stage06-anomaly.png",
+        spots: [
+          { type: "windowFace", x: 0, y: 165, w: 115, h: 170, found: false },
+          { type: "blackPhoto", x: 350, y: 185, w: 130, h: 110, found: false },
+          { type: "strawDoll", x: 475, y: 95, w: 95, h: 170, found: false }
+        ]
+      },
+      {
+        title: "カラオケ",
+        image: "assets/stage07-anomaly.png",
+        spots: [
+          { type: "screenHandprint", x: 285, y: 165, w: 245, h: 160, found: false },
+          { type: "tableFace", x: 380, y: 610, w: 160, h: 145, found: false },
+          { type: "patlight", x: 0, y: 45, w: 95, h: 150, found: false }
+        ]
+      },
+      {
+        title: "電車",
+        image: "assets/stage08-anomaly.png",
+        spots: [
+          { type: "windowFace", x: 360, y: 245, w: 170, h: 180, found: false },
+          { type: "seatMan", x: 0, y: 245, w: 145, h: 165, found: false },
+          { type: "bagHand", x: 350, y: 450, w: 165, h: 165, found: false }
+        ]
+      },
+      {
+        title: "神社",
+        image: "assets/stage09-anomaly.png",
+        spots: [
+          { type: "redKomainu", x: 0, y: 405, w: 160, h: 220, found: false },
+          { type: "treeFace", x: 495, y: 165, w: 77, h: 180, found: false },
+          { type: "fallenPerson", x: 360, y: 405, w: 165, h: 125, found: false }
+        ]
+      },
+      {
+        title: "夜道",
+        image: "assets/stage10-anomaly.png",
+        spots: [
+          { type: "vendingMan", x: 0, y: 390, w: 130, h: 180, found: false },
+          { type: "ufo", x: 235, y: 85, w: 160, h: 100, found: false },
+          { type: "streetHand", x: 20, y: 805, w: 165, h: 190, found: false }
         ]
       }
     ];
@@ -607,6 +689,7 @@
       const isLast = currentStageIndex === stages.length - 1;
       nextButton.style.display = cleared && !isLast ? "" : "none";
       twitterLink.style.display = cleared && isLast ? "" : "none";
+      finalCopy.classList.toggle("show", cleared && isLast);
       message.classList.add("show");
     }
 
@@ -673,6 +756,7 @@
       distortion = 0;
       started = false;
       message.classList.remove("show");
+      finalCopy.classList.remove("show");
       startScreen.classList.remove("hide");
       draw();
     }
@@ -686,6 +770,7 @@
       distortion = 0;
       stages.forEach(resetFound);
       message.classList.remove("show");
+      finalCopy.classList.remove("show");
       startScreen.classList.remove("hide");
       draw();
     }
