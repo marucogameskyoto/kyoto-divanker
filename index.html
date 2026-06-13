@@ -204,6 +204,21 @@
       display: block;
     }
 
+    .final-clear-image {
+      display: none;
+      width: min(78vw, 300px);
+      max-height: min(48vh, 520px);
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.62);
+    }
+
+    .final-clear-image.show {
+      display: block;
+    }
+
     .hint,
     .message p {
       margin: 0 0 16px;
@@ -413,6 +428,7 @@
       <div id="message" class="overlay message" aria-live="polite">
         <div class="panel">
           <img class="logo-image" src="assets/kyoto-divanker-logo.svg" alt="京都ディバンカー" />
+          <img id="finalClearImage" class="final-clear-image" src="assets/final-clear-image.png" alt="最終ステージクリア" />
           <p id="finalCopy" class="final-copy">すべてのクソ広告よ滅べ・・・</p>
           <div class="actions">
             <button id="nextButton" type="button" aria-label="次のステージ"><img class="button-image" src="assets/button-next.svg" alt="" /></button>
@@ -438,6 +454,7 @@
     const restartButton = document.getElementById("restartButton");
     const twitterLink = document.getElementById("twitterLink");
     const finalCopy = document.getElementById("finalCopy");
+    const finalClearImage = document.getElementById("finalClearImage");
 
     const TIME_LIMIT = 20;
     const stages = [
@@ -690,6 +707,7 @@
       nextButton.style.display = cleared && !isLast ? "" : "none";
       twitterLink.style.display = cleared && isLast ? "" : "none";
       finalCopy.classList.toggle("show", cleared && isLast);
+      finalClearImage.classList.toggle("show", cleared && isLast);
       message.classList.add("show");
     }
 
@@ -757,6 +775,7 @@
       started = false;
       message.classList.remove("show");
       finalCopy.classList.remove("show");
+      finalClearImage.classList.remove("show");
       startScreen.classList.remove("hide");
       draw();
     }
@@ -771,6 +790,7 @@
       stages.forEach(resetFound);
       message.classList.remove("show");
       finalCopy.classList.remove("show");
+      finalClearImage.classList.remove("show");
       startScreen.classList.remove("hide");
       draw();
     }
