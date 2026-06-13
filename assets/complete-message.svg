@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="180" viewBox="0 0 1100 180" role="img" aria-label="お分かりいただけただろうか…">
+  <defs>
+    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#990000" flood-opacity="0.95"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1100" height="180" fill="none"/>
+  <text x="550" y="112"
+        text-anchor="middle"
+        filter="url(#glow)"
+        font-family="'Yu Mincho','Hiragino Mincho ProN','MS Mincho',serif"
+        font-size="66"
+        font-weight="900"
+        fill="#d90000"
+        stroke="#160000"
+        stroke-width="3"
+        paint-order="stroke fill"
+        transform="skewX(-5) rotate(-1 550 90)">お分かりいただけただろうか…</text>
+</svg>
