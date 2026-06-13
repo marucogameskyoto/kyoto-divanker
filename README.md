@@ -6,9 +6,16 @@ Static HTML game package for GitHub Pages.
 
 - `index.html`
 - `assets/kyoto-divanker-logo.svg`
-- `assets/stage01-mountain-anomaly.png`
-- `assets/stage02-shrine-anomaly.png`
+- `assets/stage01-anomaly.png`
+- `assets/stage02-anomaly.png`
 - `assets/stage03-office-anomaly.png`
+- `assets/stage04-anomaly.png`
+- `assets/stage05-anomaly.png`
+- `assets/stage06-anomaly.png`
+- `assets/stage07-anomaly.png`
+- `assets/stage08-anomaly.png`
+- `assets/stage09-anomaly.png`
+- `assets/stage10-anomaly.png`
 
 ## Publish With GitHub Pages
 
@@ -31,4 +38,3 @@ Static HTML game package for GitHub Pages.
 4. Paste the GitHub Pages URL.
 5. Resize the embedded frame.
 6. Publish the Google Site.
-
