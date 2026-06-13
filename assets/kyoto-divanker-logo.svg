@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="京都ディバンカー">
+  <defs>
+    <filter id="bloodGlow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blur"/>
+      <feOffset in="blur" dx="8" dy="10" result="offset"/>
+      <feFlood flood-color="#240000" flood-opacity="0.95"/>
+      <feComposite in2="offset" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="logoFill" x1="0" x2="1">
+      <stop offset="0" stop-color="#d10000"/>
+      <stop offset="0.18" stop-color="#fff2e8"/>
+      <stop offset="0.78" stop-color="#f6e7d8"/>
+      <stop offset="1" stop-color="#7a0000"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" fill="none"/>
+  <path d="M76 255 C255 205 426 277 610 223 C784 172 923 206 1114 144" fill="none" stroke="#8b0000" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+  <text x="600" y="218"
+        text-anchor="middle"
+        filter="url(#bloodGlow)"
+        font-family="'Yu Mincho','Hiragino Mincho ProN','MS Mincho',serif"
+        font-size="116"
+        font-weight="900"
+        fill="url(#logoFill)"
+        stroke="#170000"
+        stroke-width="3"
+        paint-order="stroke fill"
+        transform="skewX(-7) rotate(-1 600 180)">京都ディバンカー</text>
+  <text x="605" y="278"
+        text-anchor="middle"
+        font-family="Georgia,serif"
+        font-size="28"
+        letter-spacing="8"
+        fill="#b90000"
+        opacity="0.9">KYOTO DIVANKER</text>
+</svg>
